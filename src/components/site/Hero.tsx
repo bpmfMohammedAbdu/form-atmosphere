@@ -18,9 +18,9 @@ const line = {
 export function Hero() {
   const [ref, inView] = useInView<HTMLElement>("0px");
   return (
-    <section ref={ref} id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pt-20">
+    <section ref={ref} id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pb-28 pt-24">
       {/* 3D structure */}
-      <div className="absolute inset-0 md:left-[38%]">
+      <div className="absolute inset-0 opacity-60 md:left-[38%] md:opacity-100">
         <ClientOnly fallback={null}>
           <SceneBoundary fallback={null}>
             <Suspense fallback={null}>

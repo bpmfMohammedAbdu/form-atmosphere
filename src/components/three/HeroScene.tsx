@@ -141,11 +141,14 @@ export default function HeroScene({ active }: { active: boolean }) {
       <Canvas
         dpr={[1, 1.75]}
         frameloop={active ? "always" : "never"}
-        camera={{ position: [4.2, 1.6, 6.2], fov: 38 }}
+        camera={{ position: [5.2, 1.4, 8.4], fov: 40 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        onCreated={() => wrap.current?.setAttribute("data-scene-ready", "true")}
+        onCreated={({ camera }) => {
+          camera.lookAt(0, 0.1, 0);
+          wrap.current?.setAttribute("data-scene-ready", "true");
+        }}
       >
-        <fog attach="fog" args={[sceneColors.background, 7, 16]} />
+        <fog attach="fog" args={[sceneColors.background, 9, 18]} />
         <ambientLight intensity={0.35} />
         <directionalLight position={[5, 8, 4]} intensity={1.6} color="#fff4e0" />
         <pointLight position={[-3, 1, 2]} intensity={6} color={sceneColors.gold} distance={8} />
@@ -164,7 +167,7 @@ export default function HeroScene({ active }: { active: boolean }) {
           sectionSize={2.5}
           sectionThickness={1}
           sectionColor="#7a5a1a"
-          fadeDistance={14}
+          fadeDistance={11}
           fadeStrength={1.5}
           infiniteGrid
         />

@@ -84,13 +84,25 @@ export function ChatWidget() {
                   >
                     {m.text}
                     {m.link && (
-                      <Link
-                        to={m.link.href}
-                        onClick={() => setOpen(false)}
-                        className="mt-2 flex items-center gap-1 text-xs font-semibold text-primary"
-                      >
-                        {m.link.label} <ArrowUpRight className="h-3 w-3" />
-                      </Link>
+                      m.link.kind === "project" ? (
+                        <Link
+                          to="/projects/$slug"
+                          params={{ slug: m.link.slug }}
+                          onClick={() => setOpen(false)}
+                          className="mt-2 flex items-center gap-1 text-xs font-semibold text-primary"
+                        >
+                          {m.link.label} <ArrowUpRight className="h-3 w-3" />
+                        </Link>
+                      ) : (
+                        <Link
+                          to="/"
+                          hash={m.link.hash}
+                          onClick={() => setOpen(false)}
+                          className="mt-2 flex items-center gap-1 text-xs font-semibold text-primary"
+                        >
+                          {m.link.label} <ArrowUpRight className="h-3 w-3" />
+                        </Link>
+                      )
                     )}
                   </div>
                 </motion.div>

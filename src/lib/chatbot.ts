@@ -1,6 +1,9 @@
 import { education, profile, projects, skillGroups } from "@/data/portfolio";
 
-export type BotReply = { text: string; suggestions?: string[]; link?: { label: string; href: string } };
+export type BotLink =
+  | { label: string; kind: "project"; slug: string }
+  | { label: string; kind: "section"; hash: "projects" | "contact" | "about" };
+export type BotReply = { text: string; suggestions?: string[]; link?: BotLink };
 
 const DEFAULT_SUGGESTIONS = ["Who is Elena?", "Show me projects", "Design philosophy", "How can I contact you?"];
 
@@ -15,7 +18,7 @@ export function answer(input: string): BotReply {
   if (project && !has(q, ["projects", "all work", "portfolio"])) {
     return {
       text: `${project.title} (${project.year}) — ${project.typology} in ${project.location} for ${project.client}. ${project.summary}`,
-      link: { label: `Open ${project.title}`, href: `/projects/${project.slug}` },
+      link: { label: `Open ${project.title}`, kind: "project", slug: project.slug },
       suggestions: ["Other projects", "Design philosophy", "Contact"],
     };
   }
@@ -23,7 +26,7 @@ export function answer(input: string): BotReply {
   if (has(q, ["contact", "email", "mail", "reach", "phone", "call", "hire", "commission", "get in touch"])) {
     return {
       text: `You can email ${profile.email} or call ${profile.phone}. ${profile.availability} The contact form at the bottom of the page works too.`,
-      link: { label: "Go to contact form", href: "/#contact" },
+      link: { label: "Go to contact form", kind: "section", hash: "contact" },
       suggestions: ["Where are you based?", "Show me projects"],
     };
   }
@@ -32,7 +35,7 @@ export function answer(input: string): BotReply {
     const list = projects.map((p) => `• ${p.title} — ${p.typology}, ${p.location} (${p.year})`).join("\n");
     return {
       text: `Here are the selected projects:\n${list}\nAsk about any of them for details.`,
-      link: { label: "Browse projects", href: "/#projects" },
+      link: { label: "Browse projects", kind: "section", hash: "projects" },
       suggestions: projects.map((p) => p.title),
     };
   }

@@ -13,7 +13,7 @@ describe("portfolio assistant", () => {
     expect(t).toContain("Helix Lattice Tower");
   });
   it("links to a specific project when it is named", () => {
-    expect(answer("tell me about the tower in Singapore").link?.href).toBe("/projects/helix-lattice-tower");
+    expect(answer("tell me about the tower in Singapore").link).toMatchObject({ kind: "project", slug: "helix-lattice-tower" });
   });
 });
 

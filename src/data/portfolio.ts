@@ -249,17 +249,23 @@ export type ExhibitItem = {
   project: string;
 };
 
+function pick(project: number, image: number): ProjectImage {
+  const found = projects[project]?.images[image];
+  if (!found) throw new Error(`Missing image ${project}/${image}`);
+  return found;
+}
+
 export const exhibition: ExhibitItem[] = [
-  { thumb: tMonolithExterior, full: projects[0].images[0], title: "Monolith at dusk", project: "Monolith Pavilion" },
-  { thumb: tSketchCliff, full: projects[1].images[4], title: "Cliff concept sketch", project: "Cascade House" },
-  { thumb: tLatticeExterior, full: projects[2].images[0], title: "Helix at night", project: "Helix Lattice Tower" },
-  { thumb: tDiagramAxo, full: projects[0].images[4], title: "Tectonic axonometric", project: "Monolith Pavilion" },
-  { thumb: tTerraceInterior, full: projects[1].images[1], title: "Living room, Sintra", project: "Cascade House" },
-  { thumb: tStudyModel, full: projects[1].images[5], title: "Massing study model", project: "Cascade House" },
-  { thumb: tMonolithInterior, full: projects[0].images[1], title: "The oculus", project: "Monolith Pavilion" },
-  { thumb: tTerraceSection, full: projects[1].images[3], title: "Section through the slope", project: "Cascade House" },
-  { thumb: tLatticeLobby, full: projects[2].images[2], title: "Public lobby", project: "Helix Lattice Tower" },
-  { thumb: tMonolithPlan, full: projects[0].images[2], title: "Pavilion floor plan", project: "Monolith Pavilion" },
+  { thumb: tMonolithExterior, full: pick(0, 0), title: "Monolith at dusk", project: "Monolith Pavilion" },
+  { thumb: tSketchCliff, full: pick(1, 4), title: "Cliff concept sketch", project: "Cascade House" },
+  { thumb: tLatticeExterior, full: pick(2, 0), title: "Helix at night", project: "Helix Lattice Tower" },
+  { thumb: tDiagramAxo, full: pick(0, 4), title: "Tectonic axonometric", project: "Monolith Pavilion" },
+  { thumb: tTerraceInterior, full: pick(1, 1), title: "Living room, Sintra", project: "Cascade House" },
+  { thumb: tStudyModel, full: pick(1, 5), title: "Massing study model", project: "Cascade House" },
+  { thumb: tMonolithInterior, full: pick(0, 1), title: "The oculus", project: "Monolith Pavilion" },
+  { thumb: tTerraceSection, full: pick(1, 3), title: "Section through the slope", project: "Cascade House" },
+  { thumb: tLatticeLobby, full: pick(2, 2), title: "Public lobby", project: "Helix Lattice Tower" },
+  { thumb: tMonolithPlan, full: pick(0, 2), title: "Pavilion floor plan", project: "Monolith Pavilion" },
 ];
 
 export const sceneColors = {

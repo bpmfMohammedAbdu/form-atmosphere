@@ -18,7 +18,7 @@ async function sendMessage(_values: ContactValues) {
   if (!navigator.onLine) throw new Error("offline");
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({ label, error, children }: { label: string; error?: string | undefined; children: React.ReactNode }) {
   return (
     <label className="block">
       <span className="mb-2 block font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{label}</span>

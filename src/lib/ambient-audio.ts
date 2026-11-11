@@ -113,7 +113,7 @@ export class AmbientAudio {
       if (!ctx || !this.bus) return;
       const o = ctx.createOscillator();
       o.type = "sine";
-      o.frequency.value = notes[Math.floor(Math.random() * notes.length)];
+      o.frequency.value = notes[Math.floor(Math.random() * notes.length)] ?? 440;
       const g = ctx.createGain();
       const t = ctx.currentTime;
       g.gain.setValueAtTime(0, t);

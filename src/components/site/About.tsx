@@ -113,7 +113,7 @@ export function About() {
                 ))}
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
-                {skillGroups[group].skills.map((s, i) => (
+                {(skillGroups[group]?.skills ?? []).map((s, i) => (
                   <motion.div key={`${group}-${s.name}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}>
                     <div className="mb-2 flex justify-between text-sm">
                       <span>{s.name}</span>

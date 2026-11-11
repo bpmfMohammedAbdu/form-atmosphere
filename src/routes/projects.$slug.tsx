@@ -40,9 +40,9 @@ export const Route = createFileRoute("/projects/$slug")({
 
 function ProjectPage() {
   const { slug } = Route.useLoaderData();
-  const idx = projects.findIndex((p) => p.slug === slug);
-  const project = projects[idx];
-  const next = projects[(idx + 1) % projects.length];
+  const idx = Math.max(0, projects.findIndex((p) => p.slug === slug));
+  const project = projects[idx]!;
+  const next = projects[(idx + 1) % projects.length]!;
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   const meta = [

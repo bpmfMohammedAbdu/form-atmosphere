@@ -27,7 +27,7 @@ export function Exhibition() {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [seen, seenInView] = useInView<HTMLDivElement>("400px", true);
   const [live, liveInView] = useInView<HTMLDivElement>("0px");
-  const item = exhibition[index];
+  const item = exhibition[index] ?? exhibition[0]!;
   const n = exhibition.length;
   const onIndexChange = useCallback((i: number) => setIndex(i), []);
   const onOpen = useCallback((i: number) => setLightbox(i), []);

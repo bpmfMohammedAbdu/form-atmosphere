@@ -36,22 +36,24 @@ function useTowerGeometry() {
       matrices.push(tmp.matrix.clone());
       const hw = (SLAB_W / 2) * s;
       const hd = (SLAB_D / 2) * s;
-      const c = [
-        [-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd],
-      ].map(([x, z]) => new THREE.Vector3(x, y + 0.02, z).applyAxisAngle(new THREE.Vector3(0, 1, 0), rot));
+      const up = new THREE.Vector3(0, 1, 0);
+      const c = ([[-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd]] as const).map(([x, z]) =>
+        new THREE.Vector3(x, y + 0.02, z).applyAxisAngle(up, rot),
+      );
       corners.push(c);
       for (let k = 0; k < 4; k++) {
-        const a = c[k], b = c[(k + 1) % 4];
+        const a = c[k]!, b = c[(k + 1) % 4]!;
         slabEdges.push(a.x, a.y, a.z, b.x, b.y, b.z);
       }
     }
     // Diagonal lattice: every 3 levels, connect corner k to the next corner up.
     for (let i = 0; i + 3 < LEVELS; i += 3) {
       for (let k = 0; k < 4; k++) {
-        const a = corners[i][k];
-        const b = corners[i + 3][(k + 1) % 4];
-        const m = new THREE.Vector3().lerpVectors(corners[i][k], corners[i][(k + 1) % 4], 0.5);
-        const mb = new THREE.Vector3().lerpVectors(corners[i + 3][k], corners[i + 3][(k + 1) % 4], 0.5);
+        const lo = corners[i]!, hi = corners[i + 3]!;
+        const a = lo[k]!;
+        const b = hi[(k + 1) % 4]!;
+        const m = new THREE.Vector3().lerpVectors(lo[k]!, lo[(k + 1) % 4]!, 0.5);
+        const mb = new THREE.Vector3().lerpVectors(hi[k]!, hi[(k + 1) % 4]!, 0.5);
         diagrid.push(a.x, a.y, a.z, mb.x, mb.y, mb.z);
         diagrid.push(m.x, m.y, m.z, b.x, b.y, b.z);
       }

@@ -64,7 +64,22 @@ function useTowerGeometry() {
   }, []);
 }
 
+/** Window-wide pointer in -1..1, so the tower follows the cursor anywhere on the page. */
+function useWindowPointer() {
+  const p = useRef({ x: 0, y: 0 });
+  useEffect(() => {
+    const move = (e: PointerEvent) => {
+      p.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      p.current.y = -((e.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener("pointermove", move, { passive: true });
+    return () => window.removeEventListener("pointermove", move);
+  }, []);
+  return p;
+}
+
 function Tower() {
+  const pointer = useWindowPointer();
   const group = useRef<THREE.Group>(null);
   const slabs = useRef<THREE.InstancedMesh>(null);
   const { edges, grid, matrices } = useTowerGeometry();
@@ -83,8 +98,8 @@ function Tower() {
     if (!g) return;
     const dt = Math.min(delta, 0.05);
     const t = state.clock.elapsedTime;
-    const targetY = t * 0.12 + state.pointer.x * POINTER_YAW;
-    const targetX = -state.pointer.y * POINTER_PITCH;
+    const targetY = t * 0.12 + pointer.current.x * POINTER_YAW;
+    const targetX = -pointer.current.y * POINTER_PITCH;
     const k = 1 - Math.exp(-FOLLOW * dt);
     g.rotation.y += (targetY - g.rotation.y) * k;
     g.rotation.x += (targetX - g.rotation.x) * k;

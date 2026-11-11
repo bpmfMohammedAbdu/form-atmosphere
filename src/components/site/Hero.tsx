@@ -81,8 +81,8 @@ export function Hero() {
           className="mt-16 grid max-w-lg grid-cols-3 gap-6 border-t pt-6"
         >
           {stats.map((s) => (
-            <div key={s.label}>
-              <dt className="order-2 mt-1 text-xs text-muted-foreground">{s.label}</dt>
+            <div key={s.label} className="flex flex-col-reverse">
+              <dt className="mt-1 text-xs text-muted-foreground">{s.label}</dt>
               <dd className="font-display text-3xl font-bold">{s.value}</dd>
             </div>
           ))}

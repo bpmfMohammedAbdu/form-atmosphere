@@ -3,7 +3,7 @@ import { Component, type ReactNode } from "react";
 /** Keeps the page usable if WebGL is unavailable or a scene crashes. */
 export class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode }, { failed: boolean }> {
   override state = { failed: false };
-  static override getDerivedStateFromError() {
+  static getDerivedStateFromError() {
     return { failed: true };
   }
   override componentDidCatch(error: unknown) {

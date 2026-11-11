@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { sceneColors } from "@/data/portfolio";
 
 const SPACING = 38;
 const RADIUS = 190;
@@ -15,8 +16,7 @@ export function AmbientBackground() {
     let w = 0, h = 0, dpr = 1, raf = 0;
     const mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999 };
 
-    const styles = getComputedStyle(document.documentElement);
-    const gold = styles.getPropertyValue("--primary").trim() || "oklch(0.77 0.165 70)";
+    const gold = sceneColors.gold;
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 1.5);

@@ -69,6 +69,7 @@ function ProjectPage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-fade-bottom" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background/80 to-transparent" />
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-14 md:px-8 md:pb-20">
           <Link to="/" hash="projects" className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
             <ArrowLeft className="h-4 w-4" /> All projects

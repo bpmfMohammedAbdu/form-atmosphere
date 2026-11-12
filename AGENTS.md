@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Site content (profile, projects, exhibition items) lives in `src/data/portfolio.ts`; components read from it so copy changes happen in one place.
+- 3D scenes live in `src/components/three/` and are loaded with `React.lazy` behind `<ClientOnly>` + `SceneBoundary`; they pause (`frameloop="never"`) when off-screen, because SSR cannot render WebGL and phones need the GPU idle.
+- The chat assistant is a pure rule-based answer engine in `src/lib/chatbot.ts` (tested in `src/test/chatbot.test.ts`), so it works without a backend.
+- The contact form validates with `src/lib/contact-schema.ts`; `sendMessage` in `Contact.tsx` is a placeholder until a backend is connected.
+- Ambient audio is synthesized with Web Audio in `src/lib/ambient-audio.ts` (no audio files) and only starts on a user click, to respect autoplay rules.

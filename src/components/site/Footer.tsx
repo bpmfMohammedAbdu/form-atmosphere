@@ -5,7 +5,7 @@ import { profile } from "@/data/portfolio";
 export function Footer() {
   return (
     <footer className="relative border-t">
-      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <div className="mx-auto max-w-7xl px-5 pb-28 pt-16 md:px-8">
         <a href={`mailto:${profile.email}`} className="group block">
           <p className="eyebrow mb-4">Start a conversation</p>
           <p className="text-display font-bold transition-colors group-hover:text-primary break-all sm:break-normal">{profile.email}</p>

@@ -64,6 +64,8 @@ export function Exhibition() {
               </SceneBoundary>
             </ClientOnly>
           )}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-fade-bottom" />
         </div>
 
         <div className="mx-auto mt-6 flex max-w-7xl flex-col items-center justify-between gap-6 px-5 md:flex-row md:px-8">

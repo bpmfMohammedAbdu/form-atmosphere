@@ -50,7 +50,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
-            className="glass shadow-panel fixed inset-x-3 bottom-24 z-50 flex max-h-[min(640px,75vh)] flex-col overflow-hidden rounded-2xl sm:inset-x-auto sm:right-5 sm:w-[390px]"
+            className="shadow-panel fixed inset-x-3 border bg-popover/95 backdrop-blur-xl bottom-24 z-50 flex max-h-[min(640px,75vh)] flex-col overflow-hidden rounded-2xl sm:inset-x-auto sm:right-5 sm:w-[390px]"
           >
             <header className="flex items-center justify-between border-b px-5 py-4">
               <div className="flex items-center gap-3">

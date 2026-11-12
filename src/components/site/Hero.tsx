@@ -38,7 +38,7 @@ export function Hero() {
           <span className="h-px w-10 bg-primary" /> {profile.role} — {profile.location}
         </motion.p>
         <h1 className="max-w-4xl text-hero font-extrabold uppercase">
-          {["Space,", "structure", "& light."].map((w, i) => (
+          {["Space,", "form", "& light."].map((w, i) => (
             <span key={w} className="block overflow-hidden pb-1">
               <motion.span custom={i} variants={line} initial="hidden" animate="show" className={i === 2 ? "block text-gold" : "block"}>
                 {w}

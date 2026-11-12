@@ -311,7 +311,6 @@ function Building() {
   const b = useBuilding();
   const viewportWidth = useThree((s) => s.viewport.width);
   const fit = SCALE * Math.max(MIN_FIT, Math.min(1, viewportWidth / FIT_WIDTH));
-  useEffect(() => { (window as unknown as Record<string, unknown>).__heroFit = { fit, viewportWidth }; }, [fit, viewportWidth]);
   const sitePos = useMemo(() => new THREE.Vector3().setFromMatrixPosition(b.site), [b.site]);
 
   useEffect(
